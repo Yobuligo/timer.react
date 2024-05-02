@@ -1,8 +1,9 @@
 import { useId } from "react";
-import { ITimerProps } from "./ITimerProps";
+import { ITimerItemProps } from "./ITimerItemProps";
 
-export const Timer: React.FC<ITimerProps> = (props) => {
+export const TimerItem: React.FC<ITimerItemProps> = (props) => {
   const inputId = useId();
+
   return (
     <div>
       <label htmlFor={inputId}>Time in min</label>
