@@ -1,4 +1,5 @@
 import { useId } from "react";
+import { ReactComponent as DeleteIcon } from "../../assets/delete.svg";
 import { Card } from "../../components/Card";
 import { Sound } from "../../types/Sound";
 import { SoundSelector } from "../soundSelector/SoundSelector";
@@ -16,6 +17,10 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
   const onChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
     props.timerConfig.title = event.target.value;
     props.onChange(props.timerConfig);
+  };
+
+  const onDelete = () => {
+    props.onDelete(props.timerConfig);
   };
 
   return (
@@ -40,6 +45,7 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
             props.onChange(props.timerConfig);
           }}
         />
+        <DeleteIcon width={"1.5rem"} onClick={onDelete} />
       </div>
     </Card>
   );
