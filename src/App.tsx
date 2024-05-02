@@ -9,8 +9,9 @@ export const App: React.FC = () => {
 
   const onAddTimer = () => {
     const timerConfig: ITimerConfig = {
-      time: 0,
       sound: Sound.SingleGong,
+      time: 0,
+      title: "",
     };
     setTimerConfigs((previous) => [...previous, timerConfig]);
   };

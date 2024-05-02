@@ -1,0 +1,1 @@
+export const writeLocalStorage = <T>(value: T)=>{}
