@@ -1,53 +1,90 @@
-import { useEffect, useState } from "react";
-import { ITimerConfig } from "../../model/ITimerConfig";
-import { SoundInfo } from "../../services/SoundInfo";
-import { TimerPanelItem } from "../timerPanelItem/TimerPanelItem";
+import { useMemo, useState } from "react";
+import useSound from "use-sound";
+import { NotSupportedError } from "../../core/errors/NotSupportedError";
+import { Sound } from "../../types/Sound";
 import { ITimerPanelProps } from "./ITimerPanelProps";
 
-export const TimerPanel: React.FC<ITimerPanelProps> = (props) => {
-  const [cursor, setCursor] = useState(-1);
+interface IState {
+  isRunning: boolean;
+}
 
-  const [timerConfig, setTimerConfig] = useState<ITimerConfig | undefined>(
-    undefined
+export const TimerPanel: React.FC<ITimerPanelProps> = (props) => {
+  const [playSingleGong] = useSound("/assets/single_gong.mp3");
+  const [playDoubleGong] = useSound("/assets/double_gong.mp3");
+  const [playTripleGong] = useSound("/assets/triple_gong.mp3");
+  const [seconds, setSeconds] = useState(0);
+
+  const state: IState = useMemo(
+    () => ({
+      isRunning: false,
+    }),
+    []
   );
 
-  useEffect(() => {
-    if (cursor !== -1) {
-      setTimerConfig(props.timerConfigs[cursor]);
+  const playSound = (sound: Sound) => {
+    switch (sound) {
+      case Sound.SingleGong: {
+        playSingleGong();
+        break;
+      }
+      case Sound.DoubleGong: {
+        playDoubleGong();
+        break;
+      }
+      case Sound.TripleGong: {
+        playTripleGong();
+        break;
+      }
+      default: {
+        throw new NotSupportedError();
+      }
     }
-  }, [cursor, props.timerConfigs]);
+  };
+
+  const onTimer = (cursor: number) => {
+    const timerConfig = props.timerConfigs[cursor];
+    if (timerConfig) {
+      setTimeout(() => {
+        playSound(timerConfig.sound);
+        onTimer(cursor + 1);
+      }, 3000);
+    } else {
+      state.isRunning = false;
+    }
+  };
 
   const onStart = () => {
-    setCursor(0);
+    onTimer(0);
+    state.isRunning = true;
+    startCycle();
+  };
+
+  const startCycle = () => {
+    if (!state.isRunning) {
+      return;
+    }
+
+    setTimeout(() => {
+      setSeconds((previous) => {
+        previous++;
+        return previous;
+      });
+      startCycle();
+    }, 1000);
   };
 
   const onReset = () => {
-    setCursor(-1);
-  };
-
-  const onFinish = () => {
-    setCursor((previous) => {
-      previous++;
-
-      if (props.timerConfigs[previous] === undefined) {
-        return -1;
-      } else {
-        return previous;
-      }
-    });
+    setSeconds(0);
+    state.isRunning = false;
   };
 
   return (
     <>
-      <button onClick={onStart}>Start</button>
-      {timerConfig && (
-        <TimerPanelItem
-          time={timerConfig.time}
-          onFinish={onFinish}
-          soundPath={SoundInfo.getPath(timerConfig.sound)}
-        />
-      )}
-      <button onClick={onReset}>Reset</button>
+      <div>{seconds}</div>
+      <div>
+        <button onClick={onStart}>Start</button>
+        <button onClick={onReset}>Reset</button>
+      </div>
     </>
   );
 };
