@@ -45,8 +45,10 @@ export const TimerPanel: React.FC<ITimerPanelProps> = (props) => {
     const timerConfig = props.timerConfigs[cursor];
     if (timerConfig) {
       setTimeout(() => {
-        playSound(timerConfig.sound);
-        onTimer(cursor + 1);
+        if (state.isRunning) {
+          playSound(timerConfig.sound);
+          onTimer(cursor + 1);
+        }
       }, 3000);
     } else {
       state.isRunning = false;
@@ -65,11 +67,13 @@ export const TimerPanel: React.FC<ITimerPanelProps> = (props) => {
     }
 
     setTimeout(() => {
-      setSeconds((previous) => {
-        previous++;
-        return previous;
-      });
-      startCycle();
+      if (state.isRunning) {
+        setSeconds((previous) => {
+          previous++;
+          return previous;
+        });
+        startCycle();
+      }
     }, 1000);
   };
 
