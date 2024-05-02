@@ -3,12 +3,13 @@ import { ITimerListProps } from "./ITimerListProps";
 import styles from "./Timer.module.scss";
 
 export const TimerList: React.FC<ITimerListProps> = (props) => {
-  const items = props.timerConfigs.map((timer) => (
+  const items = props.timerConfigs.map((timerConfig) => (
     <TimerItem
-      key={timer.id}
-      timerConfig={timer}
+      key={timerConfig.id}
+      timerConfig={timerConfig}
       onChange={props.onChange}
       onDelete={props.onDelete}
+      isRunning={props.runningTimerConfig === timerConfig}
     />
   ));
 

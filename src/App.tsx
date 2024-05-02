@@ -1,11 +1,11 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import styles from "./App.module.scss";
 import { TimerList } from "./features/timerList/TimerList";
 import { TimerPanel } from "./features/timerPanel/TimerPanel";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { ITimerConfig } from "./model/ITimerConfig";
 import { IUserConfig } from "./model/IUserConfig";
-import { IdProvider } from "./services/IdProvider";
 import { Sound } from "./types/Sound";
 
 export const App: React.FC = () => {
@@ -17,6 +17,10 @@ export const App: React.FC = () => {
     userConfig.timerConfigs
   );
 
+  const [runningTimerConfig, setRunningTimerConfig] = useState<
+    ITimerConfig | undefined
+  >(undefined);
+
   const updateUserConfig = (timerConfigs: ITimerConfig[]) => {
     userConfig.timerConfigs = timerConfigs;
     setUserConfig(userConfig);
@@ -24,7 +28,7 @@ export const App: React.FC = () => {
 
   const onAddTimer = () => {
     const timerConfig: ITimerConfig = {
-      id: IdProvider.next(),
+      id: uuidv4(),
       sound: Sound.SingleGong,
       time: 0,
       title: "",
@@ -60,6 +64,14 @@ export const App: React.FC = () => {
     });
   };
 
+  const onStartTimerConfig = (timerConfig: ITimerConfig) => {
+    setRunningTimerConfig(timerConfig);
+  };
+
+  const onStopTimer = () => {
+    setRunningTimerConfig(undefined);
+  };
+
   return (
     <div className={styles.app}>
       <TimerList
@@ -67,9 +79,14 @@ export const App: React.FC = () => {
         onChange={onChangeTimer}
         onDelete={onDeleteTimer}
         timerConfigs={timerConfigs}
+        runningTimerConfig={runningTimerConfig}
       />
       <div className={styles.timerPanel}>
-        <TimerPanel timerConfigs={timerConfigs} />
+        <TimerPanel
+          onStartTimerConfig={onStartTimerConfig}
+          onStopTimer={onStopTimer}
+          timerConfigs={timerConfigs}
+        />
       </div>
     </div>
   );

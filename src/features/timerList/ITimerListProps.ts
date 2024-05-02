@@ -4,5 +4,6 @@ export interface ITimerListProps {
   onAdd: () => void;
   onChange: (timerConfig: ITimerConfig) => void;
   onDelete: (timerConfig: ITimerConfig) => void;
+  runningTimerConfig: ITimerConfig | undefined;
   timerConfigs: ITimerConfig[];
 }
