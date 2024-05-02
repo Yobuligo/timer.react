@@ -1,5 +1,6 @@
 import { useId } from "react";
 import { ReactComponent as DeleteIcon } from "../../assets/delete.svg";
+import { ReactComponent as PlayIcon } from "../../assets/play.svg";
 import { Card } from "../../components/Card";
 import { Sound } from "../../types/Sound";
 import { SoundSelector } from "../soundSelector/SoundSelector";
@@ -51,6 +52,7 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
           }}
         />
         <DeleteIcon width={"1.5rem"} onClick={onDelete} />
+        {props.isRunning && <PlayIcon width={"1.5rem"} />}
       </div>
     </Card>
   );
