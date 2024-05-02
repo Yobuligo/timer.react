@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "./App.module.scss";
 import { TimerList } from "./features/timerList/TimerList";
 import { TimerPanel } from "./features/timerPanel/TimerPanel";
 import { ITimerConfig } from "./model/ITimerConfig";
@@ -27,13 +28,15 @@ export const App: React.FC = () => {
   };
 
   return (
-    <>
+    <div className={styles.app}>
       <TimerList
         onAddTimer={onAddTimer}
         onChangeTimer={onChangeTimer}
         timerConfigs={timerConfigs}
       />
-      <TimerPanel timerConfigs={timerConfigs} />
-    </>
+      <div className={styles.timerPanel}>
+        <TimerPanel timerConfigs={timerConfigs} />
+      </div>
+    </div>
   );
 };

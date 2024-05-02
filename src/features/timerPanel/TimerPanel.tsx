@@ -80,7 +80,7 @@ export const TimerPanel: React.FC<ITimerPanelProps> = (props) => {
 
   return (
     <>
-      <div>{seconds}</div>
+      <div>{seconds} seconds</div>
       <div>
         <button onClick={onStart}>Start</button>
         <button onClick={onReset}>Reset</button>

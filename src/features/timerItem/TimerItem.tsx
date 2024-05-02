@@ -1,7 +1,9 @@
 import { useId } from "react";
+import { Card } from "../../components/Card";
 import { Sound } from "../../types/Sound";
 import { SoundSelector } from "../soundSelector/SoundSelector";
 import { ITimerItemProps } from "./ITimerItemProps";
+import styles from "./TimerItem.module.scss";
 
 export const TimerItem: React.FC<ITimerItemProps> = (props) => {
   const inputId = useId();
@@ -17,22 +19,28 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
   };
 
   return (
-    <div>
-      <label htmlFor={inputId}>Time in min</label>
-      <input
-        type="number"
-        id={inputId}
-        min={0}
-        onChange={onChangeTime}
-        style={{ width: "3rem" }}
-      />
-      <input type="text" onChange={onChangeText} />
-      <SoundSelector
-        onSelect={(sound) => {
-          props.timerConfig.sound = Sound[sound] as unknown as Sound;
-          props.onChange(props.timerConfig);
-        }}
-      />
-    </div>
+    <Card>
+      <div className={styles.timerItem}>
+        <div>
+          <label className={styles.label} htmlFor={inputId}>
+            Time in min
+          </label>
+          <input
+            className={styles.input}
+            id={inputId}
+            min={0}
+            onChange={onChangeTime}
+            type="number"
+          />
+        </div>
+        <input type="text" onChange={onChangeText} />
+        <SoundSelector
+          onSelect={(sound) => {
+            props.timerConfig.sound = Sound[sound] as unknown as Sound;
+            props.onChange(props.timerConfig);
+          }}
+        />
+      </div>
+    </Card>
   );
 };

@@ -1,0 +1,13 @@
+.timerItem {
+  display: flex;
+  flex-direction: row;
+  column-gap: 1.5rem;
+}
+
+.label {
+  margin-right: 0.5rem;
+}
+
+.input {
+  width: 4rem;
+}
