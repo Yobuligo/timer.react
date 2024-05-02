@@ -7,7 +7,7 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
   const inputId = useId();
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    props.timer.time = parseInt(event.target.value);
+    props.timerConfig.time = parseInt(event.target.value);
   };
 
   return (
@@ -16,8 +16,8 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
       <input type="number" id={inputId} min={0} onChange={onChange} />
       <SoundSelector
         onSelect={(sound) => {
-          props.timer.sound = Sound[sound] as unknown as Sound;
-          props.onChange(props.timer);
+          props.timerConfig.sound = Sound[sound] as unknown as Sound;
+          props.onChange(props.timerConfig);
         }}
       />
     </div>

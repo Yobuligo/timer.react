@@ -1,5 +1,5 @@
-import { ITimer } from "../../model/ITimer";
+import { ITimerConfig } from "../../model/ITimerConfig";
 
 export interface ITimerPanelProps {
-  timers: ITimer[];
+  timerConfigs: ITimerConfig[];
 }

@@ -1,6 +1,6 @@
 import { Sound } from "../types/Sound";
 
-export interface ITimer {
+export interface ITimerConfig {
   time: number;
   sound: Sound;
 }

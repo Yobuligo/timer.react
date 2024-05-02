@@ -1,25 +1,25 @@
 import { useState } from "react";
 import { TimerList } from "./features/timerList/TimerList";
 import { TimerPanel } from "./features/timerPanel/TimerPanel";
-import { ITimer } from "./model/ITimer";
+import { ITimerConfig } from "./model/ITimerConfig";
 import { Sound } from "./types/Sound";
 
 export const App: React.FC = () => {
-  const [timers, setTimers] = useState<ITimer[]>([]);
+  const [timerConfigs, setTimerConfigs] = useState<ITimerConfig[]>([]);
 
   const onAddTimer = () => {
-    const timer: ITimer = {
+    const timerConfig: ITimerConfig = {
       time: 0,
       sound: Sound.FIRST,
     };
-    setTimers((previous) => [...previous, timer]);
+    setTimerConfigs((previous) => [...previous, timerConfig]);
   };
 
-  const onChangeTimer = (timer: ITimer) => {
-    setTimers((previous) => {
-      const index = previous.findIndex((item) => item === timer);
+  const onChangeTimer = (timerConfig: ITimerConfig) => {
+    setTimerConfigs((previous) => {
+      const index = previous.findIndex((item) => item === timerConfig);
       if (index !== -1) {
-        previous.splice(index, 1, timer);
+        previous.splice(index, 1, timerConfig);
       }
       return [...previous];
     });
@@ -30,9 +30,9 @@ export const App: React.FC = () => {
       <TimerList
         onAddTimer={onAddTimer}
         onChangeTimer={onChangeTimer}
-        timers={timers}
+        timerConfigs={timerConfigs}
       />
-      <TimerPanel timers={timers} />
+      <TimerPanel timerConfigs={timerConfigs} />
     </>
   );
 };

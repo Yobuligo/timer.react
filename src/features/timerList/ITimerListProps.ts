@@ -1,7 +1,7 @@
-import { ITimer } from "../../model/ITimer";
+import { ITimerConfig } from "../../model/ITimerConfig";
 
 export interface ITimerListProps {
-  timers: ITimer[];
+  timerConfigs: ITimerConfig[];
   onAddTimer: () => void;
-  onChangeTimer: (timer: ITimer) => void;
+  onChangeTimer: (timerConfig: ITimerConfig) => void;
 }
