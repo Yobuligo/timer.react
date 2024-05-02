@@ -12,6 +12,7 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
       <SoundSelector
         onSelect={(sound) => {
           props.timer.sound = sound;
+          props.onChange(props.timer);
         }}
       />
     </div>

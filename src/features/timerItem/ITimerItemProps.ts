@@ -1,5 +1,6 @@
-import { ITime } from "../../model/ITime";
+import { ITimer } from "../../model/ITimer";
 
 export interface ITimerItemProps {
-  timer: ITime;
+  timer: ITimer;
+  onChange: (timer: ITimer) => void;
 }
