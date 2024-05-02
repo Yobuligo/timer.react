@@ -1,21 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ITimerConfig } from "../../model/ITimerConfig";
 import { SoundInfo } from "../../services/SoundInfo";
 import { TimerPanelItem } from "../timerPanelItem/TimerPanelItem";
 import { ITimerPanelProps } from "./ITimerPanelProps";
 
 export const TimerPanel: React.FC<ITimerPanelProps> = (props) => {
-  const [cursor, setCursor] = useState(0);
+  const [cursor, setCursor] = useState(-1);
 
   const [timerConfig, setTimerConfig] = useState<ITimerConfig | undefined>(
     undefined
   );
 
+  useEffect(() => {
+    if (cursor !== -1) {
+      setTimerConfig(props.timerConfigs[cursor]);
+    }
+  }, [cursor, props.timerConfigs]);
+
   const onStart = () => {
-    setCursor(() => {
-      setTimerConfig(props.timerConfigs[0]);
-      return 0;
-    });
+    setCursor(0);
   };
 
   const onReset = () => {
@@ -27,10 +30,8 @@ export const TimerPanel: React.FC<ITimerPanelProps> = (props) => {
       previous++;
 
       if (props.timerConfigs[previous] === undefined) {
-        setTimerConfig(undefined);
         return -1;
       } else {
-        setTimerConfig(props.timerConfigs[previous]);
         return previous;
       }
     });

@@ -14,8 +14,8 @@ export const TimerPanelItem: React.FC<ITimerPanelItemProps> = (props) => {
       setSeconds(seconds);
     });
     timer.onFinish(() => {
-      props.onFinish();
       playSound();
+      props.onFinish();
     });
     timer.start();
 
