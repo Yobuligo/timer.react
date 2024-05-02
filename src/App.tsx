@@ -10,7 +10,7 @@ export const App: React.FC = () => {
   const onAddTimer = () => {
     const timerConfig: ITimerConfig = {
       time: 0,
-      sound: Sound.FIRST,
+      sound: Sound.SingleGong,
     };
     setTimerConfigs((previous) => [...previous, timerConfig]);
   };

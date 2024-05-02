@@ -1,5 +1,5 @@
 export enum Sound {
-  FIRST,
-  SECOND,
-  THIRD,
+  SingleGong,
+  DoubleGong,
+  TripleGong,
 }
