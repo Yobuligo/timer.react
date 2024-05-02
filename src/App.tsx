@@ -2,12 +2,25 @@ import { useState } from "react";
 import styles from "./App.module.scss";
 import { TimerList } from "./features/timerList/TimerList";
 import { TimerPanel } from "./features/timerPanel/TimerPanel";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 import { ITimerConfig } from "./model/ITimerConfig";
+import { IUserConfig } from "./model/IUserConfig";
 import { IdProvider } from "./services/IdProvider";
 import { Sound } from "./types/Sound";
 
 export const App: React.FC = () => {
-  const [timerConfigs, setTimerConfigs] = useState<ITimerConfig[]>([]);
+  const [userConfig, setUserConfig] = useLocalStorage<IUserConfig>(
+    "userConfig",
+    { timerConfigs: [] }
+  );
+  const [timerConfigs, setTimerConfigs] = useState<ITimerConfig[]>(
+    userConfig.timerConfigs
+  );
+
+  const updateUserConfig = (timerConfigs: ITimerConfig[]) => {
+    userConfig.timerConfigs = timerConfigs;
+    setUserConfig(userConfig);
+  };
 
   const onAddTimer = () => {
     const timerConfig: ITimerConfig = {
@@ -16,7 +29,11 @@ export const App: React.FC = () => {
       time: 0,
       title: "",
     };
-    setTimerConfigs((previous) => [...previous, timerConfig]);
+    setTimerConfigs((previous) => {
+      const timerConfigs = [...previous, timerConfig];
+      updateUserConfig(timerConfigs);
+      return timerConfigs;
+    });
   };
 
   const onChangeTimer = (timerConfig: ITimerConfig) => {
@@ -25,7 +42,9 @@ export const App: React.FC = () => {
       if (index !== -1) {
         previous.splice(index, 1, timerConfig);
       }
-      return [...previous];
+      const timerConfigs = [...previous];
+      updateUserConfig(timerConfigs);
+      return timerConfigs;
     });
   };
 
@@ -35,7 +54,9 @@ export const App: React.FC = () => {
       if (index !== -1) {
         previous.splice(index, 1);
       }
-      return [...previous];
+      const timerConfigs = [...previous];
+      updateUserConfig(timerConfigs);
+      return timerConfigs;
     });
   };
 
