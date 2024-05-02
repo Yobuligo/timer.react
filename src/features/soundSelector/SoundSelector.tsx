@@ -1,15 +1,18 @@
+import { Sound } from "../../types/Sound";
 import { ISoundSelectorProps } from "./ISoundSelectorProps";
 
 export const SoundSelector: React.FC<ISoundSelectorProps> = (props) => {
   const onSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log(event.target.value);
+    props.onSelect(event.target.value as any as Sound);
   };
 
-  return (
-    <select onChange={onSelect}>
-      <option>First</option>
-      <option>Second</option>
-      <option>Third</option>
-    </select>
+  const sounds = Object.keys(Sound).filter(
+    (element) => !(parseInt(element) >= 0)
   );
+
+  const items = sounds.map((sound, index) => (
+    <option key={index}>{sound}</option>
+  ));
+
+  return <select onChange={onSelect}>{items}</select>;
 };

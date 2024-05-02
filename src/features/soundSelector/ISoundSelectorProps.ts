@@ -1,3 +1,5 @@
+import { Sound } from "../../types/Sound";
+
 export interface ISoundSelectorProps {
-  onSelect: () => void;
+  onSelect: (sound: Sound) => void;
 }
