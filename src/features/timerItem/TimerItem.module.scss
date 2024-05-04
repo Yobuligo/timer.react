@@ -22,23 +22,27 @@
 
 .unit {
   align-self: center;
+  color: $input-color;
 }
 
 .runtime {
+  color: $input-color;
   font-size: $font-size;
 }
 
 .inputSeconds {
   background-color: $input-background;
   border: 1px solid $input-border;
+  color: $input-color;
   font-size: $font-size;
   width: 4rem;
 }
 
 .inputDescription {
   font-size: $font-size;
-  background-color: $input-background;
+  background-color: $input-background;  
   border: 1px solid $input-border;
+  color: $input-color;
 }
 
 .deleteIcon {
