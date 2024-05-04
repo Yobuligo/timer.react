@@ -5,20 +5,21 @@ import styles from "./Timer.module.scss";
 export const TimerList: React.FC<ITimerListProps> = (props) => {
   const items = props.timerConfigs.map((timerConfig) => (
     <TimerItem
+      isRunning={props.runningTimerConfig === timerConfig}
       key={timerConfig.id}
-      timerConfig={timerConfig}
       onChange={props.onChange}
       onDelete={props.onDelete}
-      isRunning={props.runningTimerConfig === timerConfig}
+      runtime={props.runtime}
+      timerConfig={timerConfig}
     />
   ));
 
   return (
     <div className={styles.timerList}>
+      {items}
       <div>
         <button onClick={props.onAdd}>Add Timer</button>
       </div>
-      {items}
     </div>
   );
 };

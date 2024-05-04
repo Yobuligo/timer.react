@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import useSound from "use-sound";
 import { NotSupportedError } from "../../core/errors/NotSupportedError";
 import { Sound } from "../../types/Sound";
@@ -12,7 +12,6 @@ export const TimerPanel: React.FC<ITimerPanelProps> = (props) => {
   const [playSingleGong] = useSound("/assets/single_gong.mp3");
   const [playDoubleGong] = useSound("/assets/double_gong.mp3");
   const [playTripleGong] = useSound("/assets/triple_gong.mp3");
-  const [seconds, setSeconds] = useState(0);
 
   const state: IState = useMemo(
     () => ({
@@ -45,6 +44,7 @@ export const TimerPanel: React.FC<ITimerPanelProps> = (props) => {
     const timerConfig = props.timerConfigs[cursor];
     if (timerConfig) {
       props.onStartTimerConfig(timerConfig);
+      props.setRuntime(0);
       setTimeout(() => {
         if (state.isRunning) {
           playSound(timerConfig.sound);
@@ -69,7 +69,7 @@ export const TimerPanel: React.FC<ITimerPanelProps> = (props) => {
 
     setTimeout(() => {
       if (state.isRunning) {
-        setSeconds((previous) => {
+        props.setRuntime((previous) => {
           previous++;
           return previous;
         });
@@ -79,18 +79,15 @@ export const TimerPanel: React.FC<ITimerPanelProps> = (props) => {
   };
 
   const onReset = () => {
-    setSeconds(0);
+    props.setRuntime(0);
     state.isRunning = false;
     props.onStopTimer();
   };
 
   return (
-    <>
-      <div>{seconds} seconds</div>
-      <div>
-        <button onClick={onStart}>Start</button>
-        <button onClick={onReset}>Reset</button>
-      </div>
-    </>
+    <div>
+      <button onClick={onStart}>Start</button>
+      <button onClick={onReset}>Reset</button>
+    </div>
   );
 };

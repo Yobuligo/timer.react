@@ -41,10 +41,13 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
           </div>
 
           {props.isRunning ? (
-            <PlayIcon width={"2rem"} />
+            <>
+              <div className={styles.runtime}>{props.runtime} s</div>
+              <PlayIcon width={"2rem"} />
+            </>
           ) : (
             <>
-              <div>
+              <>
                 <SoundSelector
                   initialSound={props.timerConfig.sound}
                   onSelect={(sound) => {
@@ -52,7 +55,7 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
                     props.onChange(props.timerConfig);
                   }}
                 />
-              </div>
+              </>
               <DeleteIcon width={"2rem"} onClick={onDelete} />
             </>
           )}

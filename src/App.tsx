@@ -9,6 +9,7 @@ import { IUserConfig } from "./model/IUserConfig";
 import { Sound } from "./types/Sound";
 
 export const App: React.FC = () => {
+  const [runtime, setRuntime] = useState(0);
   const [userConfig, setUserConfig] = useLocalStorage<IUserConfig>(
     "userConfig",
     { timerConfigs: [] }
@@ -80,11 +81,13 @@ export const App: React.FC = () => {
         onDelete={onDeleteTimer}
         timerConfigs={timerConfigs}
         runningTimerConfig={runningTimerConfig}
+        runtime={runtime}
       />
       <div className={styles.timerPanel}>
         <TimerPanel
           onStartTimerConfig={onStartTimerConfig}
           onStopTimer={onStopTimer}
+          setRuntime={setRuntime}
           timerConfigs={timerConfigs}
         />
       </div>
