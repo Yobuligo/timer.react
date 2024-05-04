@@ -65,6 +65,8 @@ export const App: React.FC = () => {
     });
   };
 
+  const onStartTimer = (timerConfig: ITimerConfig) => {};
+
   const onStartTimerConfig = (timerConfig: ITimerConfig) => {
     setRunningTimerConfig(timerConfig);
   };
@@ -87,6 +89,7 @@ export const App: React.FC = () => {
         onAdd={onAddTimer}
         onChange={onChangeTimer}
         onDelete={onDeleteTimer}
+        onStart={onStartTimer}
         timerConfigs={timerConfigs}
         runningTimerConfig={runningTimerConfig}
         runtime={runtime}

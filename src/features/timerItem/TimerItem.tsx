@@ -27,6 +27,8 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
     }
   };
 
+  const onStart = () => props.onStart(props.timerConfig);
+
   return (
     <Card className={styles.timerItem}>
       <div>
@@ -59,7 +61,10 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
                   }}
                 />
               </>
-              <DeleteIcon width={"2rem"} onClick={onDelete} />
+              <div>
+                <PlayIcon width={"2rem"} onClick={onStart} />
+                <DeleteIcon width={"2rem"} onClick={onDelete} />
+              </div>
             </>
           )}
         </div>

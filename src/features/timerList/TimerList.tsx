@@ -9,6 +9,7 @@ export const TimerList: React.FC<ITimerListProps> = (props) => {
       key={timerConfig.id}
       onChange={props.onChange}
       onDelete={props.onDelete}
+      onStart={props.onStart}
       runtime={props.runtime}
       timerConfig={timerConfig}
     />
@@ -18,7 +19,9 @@ export const TimerList: React.FC<ITimerListProps> = (props) => {
     <div className={styles.timerList}>
       {items}
       <div>
-        <button className={styles.addTimerButton} onClick={props.onAdd}>Add Timer</button>
+        <button className={styles.addTimerButton} onClick={props.onAdd}>
+          Add Timer
+        </button>
       </div>
     </div>
   );
