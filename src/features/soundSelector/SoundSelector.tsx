@@ -1,5 +1,6 @@
 import { Sound } from "../../types/Sound";
 import { ISoundSelectorProps } from "./ISoundSelectorProps";
+import styles from "./SoundSelector.module.scss";
 
 export const SoundSelector: React.FC<ISoundSelectorProps> = (props) => {
   const onSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -15,7 +16,11 @@ export const SoundSelector: React.FC<ISoundSelectorProps> = (props) => {
   ));
 
   return (
-    <select onChange={onSelect} value={Sound[props.initialSound]}>
+    <select
+      className={styles.selectSound}
+      onChange={onSelect}
+      value={Sound[props.initialSound]}
+    >
       {items}
     </select>
   );

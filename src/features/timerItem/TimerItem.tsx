@@ -28,9 +28,9 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
     <Card className={styles.timerItem}>
       <div>
         <div className={styles.header}>
-          <div>
+          <div className={styles.seconds}>
             <input
-              className={styles.input}
+              className={styles.inputSeconds}
               id={inputId}
               min={0}
               onChange={onChangeTime}
@@ -60,8 +60,9 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
       </div>
 
       <input
-        type="text"
+        className={styles.inputDescription}
         onChange={onChangeTitle}
+        type="text"
         value={props.timerConfig.title}
       />
     </Card>

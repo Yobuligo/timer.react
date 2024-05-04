@@ -1,19 +1,26 @@
 .timerItem {
   display: flex;
   flex-direction: column;
-  row-gap: 1.5rem;
+  row-gap: 0.5rem;
 }
 
-.header{
+.header {
   display: flex;
   flex-direction: row;
-  column-gap: 1.5rem;
+  justify-content: space-between;
 }
 
-.label {
-  margin-right: 0.5rem;
+.seconds {
+  display: flex;
+  flex-direction: row;
+  column-gap: 0.25rem;
 }
 
-.input {
+.inputSeconds {
   width: 4rem;
+  border: 1px solid #D3D3D3;
+}
+
+.inputDescription {
+  border: 1px solid #D3D3D3;
 }
