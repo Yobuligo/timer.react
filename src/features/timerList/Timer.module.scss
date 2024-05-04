@@ -4,9 +4,11 @@
 .timerList {
   display: flex;
   flex-direction: column;
+  row-gap: 0.5rem;
 }
 
 .addTimerButton {
+  color: $timer-panel-buttons_color;
   background-color: $card-background;
   border: 1px solid $card-border;
   font-size: $font-size;

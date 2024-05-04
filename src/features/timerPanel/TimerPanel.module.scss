@@ -2,6 +2,7 @@
 @import "../../colors.scss";
 
 .button {  
+  color: $timer-panel-buttons-color;
   background-color: $card-background;  
   border: 1px solid $card-border;
   font-size: $font-size-timer-panel-buttons;
