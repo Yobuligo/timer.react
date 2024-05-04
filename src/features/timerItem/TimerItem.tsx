@@ -31,59 +31,57 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
 
   return (
     <Card className={styles.timerItem}>
-      <div>
-        <div className={styles.header}>
-          <div className={styles.seconds}>
-            <input
-              className={styles.inputSeconds}
-              id={inputId}
-              min={0}
-              onChange={onChangeTime}
-              type="number"
-              value={props.timerConfig.time}
-            />
-            s
-          </div>
-
-          {props.isRunning ? (
-            <>
-              <div className={styles.runtime}>{props.runtime} s</div>
-              <PlayIcon className={styles.playIcon} width={"2rem"} />
-            </>
-          ) : (
-            <>
-              <>
-                <SoundSelector
-                  initialSound={props.timerConfig.sound}
-                  onSelect={(sound) => {
-                    props.timerConfig.sound = Sound[sound] as unknown as Sound;
-                    props.onChange(props.timerConfig);
-                  }}
-                />
-              </>
-              <div>
-                <PlayIcon
-                  className={styles.playIcon}
-                  width={"2rem"}
-                  onClick={onStart}
-                />
-                <DeleteIcon
-                  className={styles.deleteIcon}
-                  width={"2rem"}
-                  onClick={onDelete}
-                />
-              </div>
-            </>
-          )}
-        </div>
-      </div>
-
       <input
         className={styles.inputDescription}
         onChange={onChangeTitle}
         type="text"
         value={props.timerConfig.title}
       />
+
+      <div className={styles.header}>
+        <div className={styles.seconds}>
+          <input
+            className={styles.inputSeconds}
+            id={inputId}
+            min={0}
+            onChange={onChangeTime}
+            type="number"
+            value={props.timerConfig.time}
+          />
+          s
+        </div>
+
+        {props.isRunning ? (
+          <>
+            <div className={styles.runtime}>{props.runtime} s</div>
+            <PlayIcon className={styles.playIcon} width={"2rem"} />
+          </>
+        ) : (
+          <>
+            <>
+              <SoundSelector
+                initialSound={props.timerConfig.sound}
+                onSelect={(sound) => {
+                  props.timerConfig.sound = Sound[sound] as unknown as Sound;
+                  props.onChange(props.timerConfig);
+                }}
+              />
+            </>
+            <div>
+              <PlayIcon
+                className={styles.playIcon}
+                width={"2rem"}
+                onClick={onStart}
+              />
+              <DeleteIcon
+                className={styles.deleteIcon}
+                width={"2rem"}
+                onClick={onDelete}
+              />
+            </div>
+          </>
+        )}
+      </div>
     </Card>
   );
 };
