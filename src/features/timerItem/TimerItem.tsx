@@ -48,7 +48,7 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
             type="number"
             value={props.timerConfig.time}
           />
-          s
+          <div className={styles.unit}>s</div>
         </div>
 
         {props.isRunning ? (
