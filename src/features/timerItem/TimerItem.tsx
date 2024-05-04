@@ -41,7 +41,7 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
           </div>
 
           {props.isRunning ? (
-            <PlayIcon width={"1.5rem"} />
+            <PlayIcon width={"2rem"} />
           ) : (
             <>
               <div>
@@ -53,7 +53,7 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
                   }}
                 />
               </div>
-              <DeleteIcon width={"1.5rem"} onClick={onDelete} />
+              <DeleteIcon width={"2rem"} onClick={onDelete} />
             </>
           )}
         </div>
