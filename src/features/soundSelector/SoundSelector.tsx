@@ -14,5 +14,9 @@ export const SoundSelector: React.FC<ISoundSelectorProps> = (props) => {
     <option key={index}>{sound}</option>
   ));
 
-  return <select onChange={onSelect}>{items}</select>;
+  return (
+    <select onChange={onSelect} value={Sound[props.initialSound]}>
+      {items}
+    </select>
+  );
 };

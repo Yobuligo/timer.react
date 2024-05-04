@@ -46,6 +46,7 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
           value={props.timerConfig.title}
         />
         <SoundSelector
+          initialSound={props.timerConfig.sound}
           onSelect={(sound) => {
             props.timerConfig.sound = Sound[sound] as unknown as Sound;
             props.onChange(props.timerConfig);
