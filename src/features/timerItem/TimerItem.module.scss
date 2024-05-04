@@ -1,3 +1,5 @@
+@import '../../fonts.scss';
+
 .timerItem {
   display: flex;
   flex-direction: column;
@@ -14,16 +16,16 @@
   display: flex;
   flex-direction: row;
   column-gap: 0.25rem;
-  font-size: 1.5rem;
+  font-size: $font-size;
 }
 
 .inputSeconds {
-  font-size: 1.5rem;
+  font-size: $font-size;
   width: 4rem;
   border: 1px solid #d3d3d3;
 }
 
 .inputDescription {
-  font-size: 1.5rem;
+  font-size: $font-size;
   border: 1px solid #d3d3d3;
 }
