@@ -21,7 +21,10 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
   };
 
   const onDelete = () => {
-    props.onDelete(props.timerConfig);
+    const confirmed = window.confirm("Would you really like to delete?");
+    if (confirmed) {
+      props.onDelete(props.timerConfig);
+    }
   };
 
   return (
