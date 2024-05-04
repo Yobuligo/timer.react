@@ -1,6 +1,7 @@
-import { useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import useSound from "use-sound";
 import { NotSupportedError } from "../../core/errors/NotSupportedError";
+import { InitialRunTimerId } from "../../types/InitialRunTimerId";
 import { Sound } from "../../types/Sound";
 import { ITimerPanelProps } from "./ITimerPanelProps";
 import styles from "./TimerPanel.module.scss";
@@ -21,49 +22,55 @@ export const TimerPanel: React.FC<ITimerPanelProps> = (props) => {
     []
   );
 
-  const playSound = (sound: Sound) => {
-    switch (sound) {
-      case Sound.SingleGong: {
-        playSingleGong();
-        break;
-      }
-      case Sound.DoubleGong: {
-        playDoubleGong();
-        break;
-      }
-      case Sound.TripleGong: {
-        playTripleGong();
-        break;
-      }
-      default: {
-        throw new NotSupportedError();
-      }
-    }
-  };
-
-  const onTimer = (cursor: number) => {
-    const timerConfig = props.timerConfigs[cursor];
-    if (timerConfig) {
-      props.onStartTimerConfig(timerConfig);
-      props.setRuntime(0);
-      setTimeout(() => {
-        if (state.isRunning) {
-          playSound(timerConfig.sound);
-          onTimer(cursor + 1);
+  const playSound = useCallback(
+    (sound: Sound) => {
+      switch (sound) {
+        case Sound.SingleGong: {
+          playSingleGong();
+          break;
         }
-      }, timerConfig.time * 1000);
-    } else {
-      onReset();
-    }
-  };
+        case Sound.DoubleGong: {
+          playDoubleGong();
+          break;
+        }
+        case Sound.TripleGong: {
+          playTripleGong();
+          break;
+        }
+        default: {
+          throw new NotSupportedError();
+        }
+      }
+    },
+    [playDoubleGong, playSingleGong, playTripleGong]
+  );
 
-  const onStart = () => {
-    onTimer(0);
-    state.isRunning = true;
-    startCycle();
-  };
+  const onReset = useCallback(() => {
+    props.setRuntime(0);
+    state.isRunning = false;
+    props.onStopTimer();
+  }, [props, state]);
 
-  const startCycle = () => {
+  const onStartTimer = useCallback(
+    (cursor: number) => {
+      const timerConfig = props.timerConfigs[cursor];
+      if (timerConfig) {
+        props.onStartTimerConfig(timerConfig);
+        props.setRuntime(0);
+        setTimeout(() => {
+          if (state.isRunning) {
+            playSound(timerConfig.sound);
+            onStartTimer(cursor + 1);
+          }
+        }, timerConfig.time * 1000);
+      } else {
+        onReset();
+      }
+    },
+    [onReset, playSound, props, state.isRunning]
+  );
+
+  const startCountTime = useCallback(() => {
     if (!state.isRunning) {
       return;
     }
@@ -74,22 +81,45 @@ export const TimerPanel: React.FC<ITimerPanelProps> = (props) => {
           previous++;
           return previous;
         });
-        startCycle();
+        startCountTime();
       }
     }, 1000);
-  };
+  }, [props, state.isRunning]);
 
-  const onReset = () => {
-    props.setRuntime(0);
-    state.isRunning = false;
-    props.onStopTimer();
-  };
+  const onStart = useCallback(
+    (index: number) => {
+      onStartTimer(index);
+      state.isRunning = true;
+      startCountTime();
+    },
+    [onStartTimer, startCountTime, state]
+  );
+
+  const findIndexByTimerConfigId = useCallback(
+    (timerConfigId: string) => {
+      return props.timerConfigs.findIndex(
+        (timerConfig) => timerConfig.id === timerConfigId
+      );
+    },
+    [props.timerConfigs]
+  );
+
+  useEffect(() => {
+    if (props.runTimerId !== InitialRunTimerId) {
+      // reset possibly running timer
+      onReset();
+
+      // start new timer
+      const index = findIndexByTimerConfigId(props.runTimerId);
+      if (index === -1) {
+        throw Error("Error while starting timer. Timer not found.");
+      }
+      onStart(index);
+    }
+  }, [findIndexByTimerConfigId, onReset, onStart, props.runTimerId]);
 
   return (
     <div>
-      <button className={styles.button} onClick={onStart}>
-        Start
-      </button>
       <button className={styles.button} onClick={onReset}>
         Reset
       </button>

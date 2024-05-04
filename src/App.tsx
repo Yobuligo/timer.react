@@ -6,10 +6,12 @@ import { TimerPanel } from "./features/timerPanel/TimerPanel";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { ITimerConfig } from "./model/ITimerConfig";
 import { IUserConfig } from "./model/IUserConfig";
+import { InitialRunTimerId } from "./types/InitialRunTimerId";
 import { Sound } from "./types/Sound";
 
 export const App: React.FC = () => {
   const [runtime, setRuntime] = useState(0);
+  const [runTimerId, setRunTimerId] = useState<string>(InitialRunTimerId);
   const [userConfig, setUserConfig] = useLocalStorage<IUserConfig>(
     "userConfig",
     { timerConfigs: [] }
@@ -65,14 +67,15 @@ export const App: React.FC = () => {
     });
   };
 
-  const onStartTimer = (timerConfig: ITimerConfig) => {};
+  const onStartTimer = (timerConfig: ITimerConfig) =>
+    setRunTimerId(timerConfig.id);
 
-  const onStartTimerConfig = (timerConfig: ITimerConfig) => {
+  const onStartTimerConfig = (timerConfig: ITimerConfig) =>
     setRunningTimerConfig(timerConfig);
-  };
 
   const onStopTimer = () => {
     setRunningTimerConfig(undefined);
+    setRunTimerId(InitialRunTimerId);
   };
 
   return (
@@ -81,6 +84,7 @@ export const App: React.FC = () => {
         <TimerPanel
           onStartTimerConfig={onStartTimerConfig}
           onStopTimer={onStopTimer}
+          runTimerId={runTimerId}
           setRuntime={setRuntime}
           timerConfigs={timerConfigs}
         />
