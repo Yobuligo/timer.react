@@ -29,7 +29,7 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
       <div className={styles.timerItem}>
         <div>
           <label className={styles.label} htmlFor={inputId}>
-            Time in min
+            Time in seconds
           </label>
           <input
             className={styles.input}
