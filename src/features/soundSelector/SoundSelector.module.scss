@@ -1,6 +1,7 @@
 @import "../../fonts.scss";
+@import "../../colors.scss";
 
 .selectSound {
-  border: 1px solid #d3d3d3;
+  border: 1px solid $input-border;
   font-size: $font-size;
 }

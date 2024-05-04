@@ -1,5 +1,14 @@
+@import "../../fonts.scss";
+@import "../../colors.scss";
+
 .timerList {
   display: flex;
   flex-direction: column;
   row-gap: 0.5rem;
+}
+
+.addTimerButton {
+  background-color: $card-background;
+  border: 1px solid $card-border;
+  font-size: $font-size;
 }

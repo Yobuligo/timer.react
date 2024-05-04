@@ -1,5 +1,7 @@
+@import "../colors.scss";
+
 .card {
   padding: 0.5rem;
-  background-color: #FBFBFB;
-  border: 1px solid #F3F3F3;
+  background-color: $card-background;
+  border: 1px solid $card-border;
 }

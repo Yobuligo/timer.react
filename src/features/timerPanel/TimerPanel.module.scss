@@ -1,0 +1,8 @@
+@import "../../fonts.scss";
+@import "../../colors.scss";
+
+.button {  
+  background-color: $card-background;  
+  border: 1px solid $card-border;
+  font-size: $font-size-timer-panel-buttons;
+}

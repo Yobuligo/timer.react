@@ -1,4 +1,5 @@
 @import '../../fonts.scss';
+@import '../../colors.scss';
 
 .timerItem {
   display: flex;
@@ -26,10 +27,10 @@
 .inputSeconds {
   font-size: $font-size;
   width: 4rem;
-  border: 1px solid #d3d3d3;
+  border: 1px solid $input-border;
 }
 
 .inputDescription {
   font-size: $font-size;
-  border: 1px solid #d3d3d3;
+  border: 1px solid $input-border
 }

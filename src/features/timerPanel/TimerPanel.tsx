@@ -3,6 +3,7 @@ import useSound from "use-sound";
 import { NotSupportedError } from "../../core/errors/NotSupportedError";
 import { Sound } from "../../types/Sound";
 import { ITimerPanelProps } from "./ITimerPanelProps";
+import styles from "./TimerPanel.module.scss";
 
 interface IState {
   isRunning: boolean;
@@ -86,8 +87,12 @@ export const TimerPanel: React.FC<ITimerPanelProps> = (props) => {
 
   return (
     <div>
-      <button onClick={onStart}>Start</button>
-      <button onClick={onReset}>Reset</button>
+      <button className={styles.button} onClick={onStart}>
+        Start
+      </button>
+      <button className={styles.button} onClick={onReset}>
+        Reset
+      </button>
     </div>
   );
 };
