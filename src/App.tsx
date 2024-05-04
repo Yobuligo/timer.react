@@ -75,14 +75,6 @@ export const App: React.FC = () => {
 
   return (
     <div className={styles.app}>
-      <TimerList
-        onAdd={onAddTimer}
-        onChange={onChangeTimer}
-        onDelete={onDeleteTimer}
-        timerConfigs={timerConfigs}
-        runningTimerConfig={runningTimerConfig}
-        runtime={runtime}
-      />
       <div className={styles.timerPanel}>
         <TimerPanel
           onStartTimerConfig={onStartTimerConfig}
@@ -91,6 +83,14 @@ export const App: React.FC = () => {
           timerConfigs={timerConfigs}
         />
       </div>
+      <TimerList
+        onAdd={onAddTimer}
+        onChange={onChangeTimer}
+        onDelete={onDeleteTimer}
+        timerConfigs={timerConfigs}
+        runningTimerConfig={runningTimerConfig}
+        runtime={runtime}
+      />
     </div>
   );
 };
