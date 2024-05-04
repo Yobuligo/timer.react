@@ -27,17 +27,36 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
   return (
     <Card className={styles.timerItem}>
       <div>
-        <label className={styles.label} htmlFor={inputId}>
-          Time in seconds
-        </label>
-        <input
-          className={styles.input}
-          id={inputId}
-          min={0}
-          onChange={onChangeTime}
-          type="number"
-          value={props.timerConfig.time}
-        />
+        <div className={styles.header}>
+          <div>
+            <input
+              className={styles.input}
+              id={inputId}
+              min={0}
+              onChange={onChangeTime}
+              type="number"
+              value={props.timerConfig.time}
+            />
+            s
+          </div>
+
+          {props.isRunning ? (
+            <PlayIcon width={"1.5rem"} />
+          ) : (
+            <>
+              <div>
+                <SoundSelector
+                  initialSound={props.timerConfig.sound}
+                  onSelect={(sound) => {
+                    props.timerConfig.sound = Sound[sound] as unknown as Sound;
+                    props.onChange(props.timerConfig);
+                  }}
+                />
+              </div>
+              <DeleteIcon width={"1.5rem"} onClick={onDelete} />
+            </>
+          )}
+        </div>
       </div>
 
       <input
@@ -45,15 +64,6 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
         onChange={onChangeTitle}
         value={props.timerConfig.title}
       />
-      <SoundSelector
-        initialSound={props.timerConfig.sound}
-        onSelect={(sound) => {
-          props.timerConfig.sound = Sound[sound] as unknown as Sound;
-          props.onChange(props.timerConfig);
-        }}
-      />
-      <DeleteIcon width={"1.5rem"} onClick={onDelete} />
-      {props.isRunning && <PlayIcon width={"1.5rem"} />}
     </Card>
   );
 };
