@@ -1,3 +1,4 @@
+import { ReactComponent as AddIcon } from "../../assets/add.svg";
 import { TimerItem } from "../timerItem/TimerItem";
 import { ITimerListProps } from "./ITimerListProps";
 import styles from "./Timer.module.scss";
@@ -18,10 +19,8 @@ export const TimerList: React.FC<ITimerListProps> = (props) => {
   return (
     <div className={styles.timerList}>
       {items}
-      <div>
-        <button className={styles.addTimerButton} onClick={props.onAdd}>
-          Add Timer
-        </button>
+      <div className={styles.buttonPanel}>
+        <AddIcon className={styles.addTimerButton} onClick={props.onAdd} />
       </div>
     </div>
   );

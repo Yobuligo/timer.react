@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo } from "react";
 import useSound from "use-sound";
+import { ReactComponent as ResetIcon } from "../../assets/reset.svg";
 import { NotSupportedError } from "../../core/errors/NotSupportedError";
 import { InitialRunTimerId } from "../../types/InitialRunTimerId";
 import { Sound } from "../../types/Sound";
@@ -119,10 +120,8 @@ export const TimerPanel: React.FC<ITimerPanelProps> = (props) => {
   }, [findIndexByTimerConfigId, onReset, onStart, props.runTimerId]);
 
   return (
-    <div>
-      <button className={styles.button} onClick={onReset}>
-        Reset
-      </button>
+    <div className={styles.buttonPanel}>
+      <ResetIcon className={styles.resetTimerButton} onClick={onReset} />
     </div>
   );
 };

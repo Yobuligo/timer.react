@@ -1,7 +1,7 @@
 import { useId } from "react";
 import { ReactComponent as DeleteIcon } from "../../assets/delete.svg";
 import { ReactComponent as PlayIcon } from "../../assets/play.svg";
-import { Card } from "../../components/Card";
+import { Card } from "../../components/card/Card";
 import { Sound } from "../../types/Sound";
 import { SoundSelector } from "../soundSelector/SoundSelector";
 import { ITimerItemProps } from "./ITimerItemProps";

@@ -1,9 +1,11 @@
-@import "../../fonts.scss";
 @import "../../colors.scss";
 
-.button {  
-  color: $button-color;
-  background-color: $button-background;  
-  border: 1px solid $button-border-color;
-  font-size: $font-size-timer-panel-buttons;
+.buttonPanel {
+  text-align: center;
+}
+
+.resetTimerButton {
+  fill: $button-background;
+  width: 4rem;
+  height: 4rem;
 }
