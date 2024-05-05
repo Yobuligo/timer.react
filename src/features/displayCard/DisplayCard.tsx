@@ -1,5 +1,5 @@
 import { Card } from "../../components/card/Card";
-import { OptionIcon } from "../../components/icons/OptionIcon";
+import { EditIcon } from "../../components/icons/EditIcon";
 import { PlayIcon } from "../../components/icons/PlayIcon";
 import { TimerConverter } from "../../services/TimeConverter";
 import styles from "./DisplayCard.module.scss";
@@ -15,7 +15,7 @@ export const DisplayCard: React.FC<IDisplayCardProps> = (props) => {
         </div>
         <div>
           <PlayIcon />
-          <OptionIcon />
+          <EditIcon />
         </div>
       </div>
     </Card>
