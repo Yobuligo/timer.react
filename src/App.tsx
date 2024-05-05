@@ -33,7 +33,7 @@ export const App: React.FC = () => {
     const timerConfig: ITimerConfig = {
       id: uuidv4(),
       sound: Sound.SingleGong,
-      time: 0,
+      duration: 0,
       title: "Enter your title",
     };
     setTimerConfigs((previous) => {

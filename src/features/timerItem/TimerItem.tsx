@@ -3,6 +3,7 @@ import { ReactComponent as DeleteIcon } from "../../assets/delete.svg";
 import { ReactComponent as PlayIcon } from "../../assets/play.svg";
 import { Card } from "../../components/card/Card";
 import { Sound } from "../../types/Sound";
+import { style } from "../../utils/style";
 import { SoundSelector } from "../soundSelector/SoundSelector";
 import { ITimerItemProps } from "./ITimerItemProps";
 import styles from "./TimerItem.module.scss";
@@ -11,7 +12,7 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
   const inputId = useId();
 
   const onChangeTime = (event: React.ChangeEvent<HTMLInputElement>) => {
-    props.timerConfig.time = parseInt(event.target.value);
+    props.timerConfig.duration = parseInt(event.target.value);
     props.onChange(props.timerConfig);
   };
 
@@ -46,7 +47,7 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
             min={0}
             onChange={onChangeTime}
             type="number"
-            value={props.timerConfig.time}
+            value={props.timerConfig.duration}
           />
           <div className={styles.unit}>s</div>
         </div>
@@ -54,7 +55,7 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
         {props.isRunning ? (
           <>
             <div className={styles.runtime}>{props.runtime} s</div>
-            <PlayIcon className={styles.playIcon} width={"2rem"} />
+            <PlayIcon className={style(styles.playIcon, styles.icon)} />
           </>
         ) : (
           <>
@@ -69,13 +70,11 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
             </>
             <div>
               <PlayIcon
-                className={styles.playIcon}
-                width={"2rem"}
+                className={style(styles.playIcon, styles.icon)}
                 onClick={onStart}
               />
               <DeleteIcon
-                className={styles.deleteIcon}
-                width={"2rem"}
+                className={style(styles.deleteIcon, styles.icon)}
                 onClick={onDelete}
               />
             </div>

@@ -1,8 +1,8 @@
 import { Sound } from "../types/Sound";
 
 export interface ITimerConfig {
+  duration: number;
   id: string;
   sound: Sound;
-  time: number;
   title: string;
 }

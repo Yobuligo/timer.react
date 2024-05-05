@@ -40,7 +40,7 @@
 
 .inputDescription {
   font-size: $font-size;
-  background-color: $input-background;  
+  background-color: $input-background;
   border: 1px solid $input-border;
   color: $input-color;
 }
@@ -51,4 +51,9 @@
 
 .playIcon {
   fill: $timer-item-play-icon;
+}
+
+.icon {
+  width: 2rem;
+  height: 2rem;
 }

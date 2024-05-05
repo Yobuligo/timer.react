@@ -63,7 +63,7 @@ export const TimerPanel: React.FC<ITimerPanelProps> = (props) => {
             playSound(timerConfig.sound);
             onStartTimer(cursor + 1);
           }
-        }, timerConfig.time * 1000);
+        }, timerConfig.duration * 1000);
       } else {
         onReset();
       }
