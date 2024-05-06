@@ -14,8 +14,8 @@ export const DisplayCard: React.FC<IDisplayCardProps> = (props) => {
           {TimerConverter.secToMinAndSeconds(119)}
         </div>
         <div>
-          <PlayIcon />
-          <EditIcon />
+          <PlayIcon onClick={props.onPlay} />
+          <EditIcon onClick={props.onEdit} />
         </div>
       </div>
     </Card>
