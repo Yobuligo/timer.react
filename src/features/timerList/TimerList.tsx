@@ -27,7 +27,10 @@ export const TimerList: React.FC<ITimerListProps> = (props) => {
         runtime={props.runtime}
         timerConfig={props.timerConfigs[0]}
       />
-      <TimerItemEdit timerConfig={props.timerConfigs[0]} />
+      <TimerItemEdit
+        onChange={props.onChange}
+        timerConfig={props.timerConfigs[0]}
+      />
       <div className={styles.buttonPanel}>
         <AddIcon className={styles.addTimerButton} onClick={props.onAdd} />
       </div>
