@@ -1,10 +1,10 @@
 import { useId } from "react";
-import { ReactComponent as DeleteIcon } from "../../assets/delete.svg";
-import { ReactComponent as PlayIcon } from "../../assets/play.svg";
-import { Card } from "../../components/card/Card";
-import { Sound } from "../../types/Sound";
-import { style } from "../../utils/style";
-import { SoundSelector } from "../soundSelector/SoundSelector";
+import { ReactComponent as DeleteIcon } from "../../../assets/delete.svg";
+import { ReactComponent as PlayIcon } from "../../../assets/play.svg";
+import { Card } from "../../../components/card/Card";
+import { Sound } from "../../../types/Sound";
+import { style } from "../../../utils/style";
+import { SoundSelector } from "../../soundSelector/SoundSelector";
 import { ITimerItemProps } from "./ITimerItemProps";
 import styles from "./TimerItem.module.scss";
 

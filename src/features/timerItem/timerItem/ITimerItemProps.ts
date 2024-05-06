@@ -1,4 +1,4 @@
-import { ITimerConfig } from "../../model/ITimerConfig";
+import { ITimerConfig } from "../../../model/ITimerConfig";
 
 export interface ITimerItemProps {
   isRunning: boolean;
