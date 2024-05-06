@@ -2,6 +2,8 @@
 @import "../../colors.scss";
 
 .selectSound {
+  font-size: 1.25rem;
   border: 1px solid $input-border;
-  font-size: 1.5rem;
+  background-color: $input-background;
+  color: $input-color;
 }
