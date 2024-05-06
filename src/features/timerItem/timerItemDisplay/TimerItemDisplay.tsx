@@ -12,7 +12,7 @@ export const TimerItemDisplay: React.FC<ITimerItemDisplayProps> = (props) => {
   };
 
   return (
-    <TimerItemCard>
+    <TimerItemCard sound={props.timerConfig.sound}>
       {props.timerConfig.title}
       <div className={styles.footer}>
         <TimerItemWatch seconds={props.timerConfig.duration} />

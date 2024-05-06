@@ -1,5 +1,6 @@
 import { ConfirmIcon } from "../../../components/icons/ConfirmIcon";
 import { DeleteIcon } from "../../../components/icons/DeleteIcon";
+import { StyleFactory } from "../../../services/StyleFactory";
 import { TimerConverter } from "../../../services/TimeConverter";
 import { Sound } from "../../../types/Sound";
 import { style } from "../../../utils/style";
@@ -40,10 +41,11 @@ export const TimerItemEdit: React.FC<ITimerItemEditProps> = (props) => {
   };
 
   return (
-    <TimerItemCard>
+    <TimerItemCard sound={props.timerConfig.sound}>
       <input
         className={style(styles.input, styles.inputTitle)}
         onChange={onChangeTitle}
+        style={StyleFactory.createBySound(props.timerConfig.sound)}
         type="text"
         value={props.timerConfig.title}
       />
@@ -52,8 +54,9 @@ export const TimerItemEdit: React.FC<ITimerItemEditProps> = (props) => {
           className={style(styles.input, styles.watch)}
           min={0}
           onChange={onChangeTime}
-          value={TimerConverter.secToTime(props.timerConfig.duration)}
+          style={StyleFactory.createBySound(props.timerConfig.sound)}
           type="time"
+          value={TimerConverter.secToTime(props.timerConfig.duration)}
         />
         <SoundSelector
           initialSound={props.timerConfig.sound}
