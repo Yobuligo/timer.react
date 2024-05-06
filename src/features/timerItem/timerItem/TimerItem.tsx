@@ -4,7 +4,7 @@ import { TimerItemEdit } from "../timerItemEdit/TimerItemEdit";
 import { ITimerItemProps } from "./ITimerItemProps";
 
 export const TimerItem: React.FC<ITimerItemProps> = (props) => {
-  const [editMode, setEditMode] = useState(props.timerConfig.editMode);
+  const [editMode, setEditMode] = useState(props.timerConfig.editMode ?? false);
 
   const onConfirm = () => setEditMode(false);
 
