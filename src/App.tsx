@@ -31,9 +31,10 @@ export const App: React.FC = () => {
 
   const onAddTimer = () => {
     const timerConfig: ITimerConfig = {
+      duration: 0,
+      editMode: true,
       id: uuidv4(),
       sound: Sound.SingleGong,
-      duration: 0,
       title: "Enter your title",
     };
     setTimerConfigs((previous) => {

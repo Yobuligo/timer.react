@@ -10,9 +10,14 @@ import { ITimerItemEditProps } from "./ITimerItemEditProps";
 import styles from "./TimerItemEdit.module.scss";
 
 export const TimerItemEdit: React.FC<ITimerItemEditProps> = (props) => {
+  const onChange = () => {
+    props.timerConfig.editMode = false;
+    props.onChange(props.timerConfig);
+  };
+
   const onChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
     props.timerConfig.title = event.target.value;
-    props.onChange(props.timerConfig);
+    onChange();
   };
 
   const onDelete = () => {
@@ -24,14 +29,14 @@ export const TimerItemEdit: React.FC<ITimerItemEditProps> = (props) => {
 
   const onSelectSound = (sound: Sound) => {
     props.timerConfig.sound = Sound[sound] as unknown as Sound;
-    props.onChange(props.timerConfig);
+    onChange();
   };
 
   const onChangeTime = (event: React.ChangeEvent<HTMLInputElement>) => {
     props.timerConfig.duration = TimerConverter.timeToSeconds(
       event.target.value
     );
-    props.onChange(props.timerConfig);
+    onChange();
   };
 
   return (
