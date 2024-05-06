@@ -1,4 +1,5 @@
 @import "../../colors.scss";
+@import "../../fonts.scss";
 
 .timerList {
   display: flex;
@@ -14,4 +15,10 @@
   fill: $button-background;
   width: 4rem;
   height: 4rem;
+}
+
+.noTimerMessage {
+  text-align: center;
+  color: $background-text-color;
+  font-size: 1.5rem;
 }

@@ -19,6 +19,9 @@ export const TimerList: React.FC<ITimerListProps> = (props) => {
   return (
     <div className={styles.timerList}>
       {items}
+      {items.length === 0 && (
+        <div className={styles.noTimerMessage}>Press + to add a new timer</div>
+      )}
       <div className={styles.buttonPanel}>
         <AddIcon className={styles.addTimerButton} onClick={props.onAdd} />
       </div>
