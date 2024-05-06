@@ -29,6 +29,8 @@ export const TimerList: React.FC<ITimerListProps> = (props) => {
       />
       <TimerItemEdit
         onChange={props.onChange}
+        onConfirm={() => {}}
+        onDelete={props.onDelete}
         timerConfig={props.timerConfigs[0]}
       />
       <div className={styles.buttonPanel}>

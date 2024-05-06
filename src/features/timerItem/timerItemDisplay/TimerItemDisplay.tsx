@@ -1,5 +1,6 @@
 import { EditIcon } from "../../../components/icons/EditIcon";
 import { PlayIcon } from "../../../components/icons/PlayIcon";
+import { ButtonPanel } from "../buttonPanel/ButtonPanel";
 import { TimerItemCard } from "../timerItemCard/TimerItemCard";
 import { TimerItemWatch } from "../timerItemWatch/TimerItemWatch";
 import { ITimerItemDisplayProps } from "./ITimerItemDisplayProps";
@@ -20,10 +21,10 @@ export const TimerItemDisplay: React.FC<ITimerItemDisplayProps> = (props) => {
         {props.isRunning ? (
           <PlayIcon />
         ) : (
-          <div>
+          <ButtonPanel>
             <PlayIcon onClick={onPlay} />
             <EditIcon onClick={props.onEdit} />
-          </div>
+          </ButtonPanel>
         )}
       </div>
     </TimerItemCard>
