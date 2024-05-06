@@ -1,6 +1,6 @@
-import { Card } from "../../../components/card/Card";
 import { EditIcon } from "../../../components/icons/EditIcon";
 import { PlayIcon } from "../../../components/icons/PlayIcon";
+import { TimerItemCard } from "../timerItemCard/TimerItemCard";
 import { TimerItemWatch } from "../timerItemWatch/TimerItemWatch";
 import { ITimerItemDisplayProps } from "./ITimerItemDisplayProps";
 import styles from "./TimerItemDisplay.module.scss";
@@ -11,7 +11,7 @@ export const TimerItemDisplay: React.FC<ITimerItemDisplayProps> = (props) => {
   };
 
   return (
-    <Card className={styles.displayCard}>
+    <TimerItemCard>
       {props.timerConfig.title}
       <div className={styles.footer}>
         <TimerItemWatch seconds={props.timerConfig.duration} />
@@ -26,6 +26,6 @@ export const TimerItemDisplay: React.FC<ITimerItemDisplayProps> = (props) => {
           </div>
         )}
       </div>
-    </Card>
+    </TimerItemCard>
   );
 };
