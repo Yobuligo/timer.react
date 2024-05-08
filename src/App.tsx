@@ -29,7 +29,7 @@ export const App: React.FC = () => {
     setUserConfig(userConfig);
   };
 
-  const onAddTimer = () => {
+  const onAdd = () => {
     const timerConfig: ITimerConfig = {
       duration: 0,
       editMode: true,
@@ -44,7 +44,7 @@ export const App: React.FC = () => {
     });
   };
 
-  const onChangeTimer = (timerConfig: ITimerConfig) => {
+  const onChange = (timerConfig: ITimerConfig) => {
     setTimerConfigs((previous) => {
       const index = previous.findIndex((item) => item.id === timerConfig.id);
       if (index !== -1) {
@@ -56,7 +56,7 @@ export const App: React.FC = () => {
     });
   };
 
-  const onDeleteTimer = (timerConfig: ITimerConfig) => {
+  const onDelete = (timerConfig: ITimerConfig) => {
     setTimerConfigs((previous) => {
       const index = previous.findIndex((item) => item.id === timerConfig.id);
       if (index !== -1) {
@@ -68,8 +68,7 @@ export const App: React.FC = () => {
     });
   };
 
-  const onStartTimer = (timerConfig: ITimerConfig) =>
-    setRunTimerId(timerConfig.id);
+  const onPlay = (timerConfig: ITimerConfig) => setRunTimerId(timerConfig.id);
 
   const onStartTimerConfig = (timerConfig: ITimerConfig) =>
     setRunningTimerConfig(timerConfig);
@@ -78,6 +77,8 @@ export const App: React.FC = () => {
     setRunningTimerConfig(undefined);
     setRunTimerId(InitialRunTimerId);
   };
+
+  const onPause = (timerConfig: ITimerConfig) => {};
 
   return (
     <div className={styles.app}>
@@ -91,10 +92,11 @@ export const App: React.FC = () => {
         />
       </div>
       <TimerList
-        onAdd={onAddTimer}
-        onChange={onChangeTimer}
-        onDelete={onDeleteTimer}
-        onPlay={onStartTimer}
+        onAdd={onAdd}
+        onChange={onChange}
+        onDelete={onDelete}
+        onPause={onPause}
+        onPlay={onPlay}
         timerConfigs={timerConfigs}
         runningTimerConfig={runningTimerConfig}
         runtime={runtime}
