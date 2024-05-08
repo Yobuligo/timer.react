@@ -23,7 +23,7 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
         <TimerItemDisplay
           isRunning={props.isRunning}
           onEdit={onEdit}
-          onPlay={props.onStart}
+          onPlay={props.onPlay}
           runtime={props.runtime}
           timerConfig={props.timerConfig}
         />

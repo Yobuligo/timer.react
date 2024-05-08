@@ -94,7 +94,7 @@ export const App: React.FC = () => {
         onAdd={onAddTimer}
         onChange={onChangeTimer}
         onDelete={onDeleteTimer}
-        onStart={onStartTimer}
+        onPlay={onStartTimer}
         timerConfigs={timerConfigs}
         runningTimerConfig={runningTimerConfig}
         runtime={runtime}

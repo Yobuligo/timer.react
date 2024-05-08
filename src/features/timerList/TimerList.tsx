@@ -10,7 +10,8 @@ export const TimerList: React.FC<ITimerListProps> = (props) => {
       key={timerConfig.id}
       onChange={props.onChange}
       onDelete={props.onDelete}
-      onStart={props.onStart}
+      onPause={props.onPause}
+      onPlay={props.onPlay}
       runtime={props.runtime}
       timerConfig={timerConfig}
     />

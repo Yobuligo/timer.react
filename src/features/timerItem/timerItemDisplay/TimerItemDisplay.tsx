@@ -1,4 +1,5 @@
 import { EditIcon } from "../../../components/icons/EditIcon";
+import { PauseIcon } from "../../../components/icons/PauseIcon";
 import { PlayIcon } from "../../../components/icons/PlayIcon";
 import { ButtonPanel } from "../buttonPanel/ButtonPanel";
 import { TimerItemCard } from "../timerItemCard/TimerItemCard";
@@ -7,9 +8,9 @@ import { ITimerItemDisplayProps } from "./ITimerItemDisplayProps";
 import styles from "./TimerItemDisplay.module.scss";
 
 export const TimerItemDisplay: React.FC<ITimerItemDisplayProps> = (props) => {
-  const onPlay = () => {
-    props.onPlay?.(props.timerConfig);
-  };
+  const onPlay = () => props.onPlay?.(props.timerConfig);
+
+  const onPause = () => props.onPause?.(props.timerConfig);
 
   return (
     <TimerItemCard sound={props.timerConfig.sound}>
@@ -19,7 +20,10 @@ export const TimerItemDisplay: React.FC<ITimerItemDisplayProps> = (props) => {
         {props.isRunning && <TimerItemWatch seconds={props.runtime} />}
 
         {props.isRunning ? (
-          <PlayIcon />
+          <ButtonPanel>
+            <PauseIcon onClick={onPause} />
+            <PlayIcon />
+          </ButtonPanel>
         ) : (
           <ButtonPanel>
             <PlayIcon onClick={onPlay} />
