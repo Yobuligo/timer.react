@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./App.module.scss";
-import { Select } from "./components/select/Select";
 import { TimerList } from "./features/timerList/TimerList";
 import { TimerPanel } from "./features/timerPanel/TimerPanel";
 import { useLocalStorage } from "./hooks/useLocalStorage";
@@ -99,16 +98,6 @@ export const App: React.FC = () => {
         timerConfigs={timerConfigs}
         runningTimerConfig={runningTimerConfig}
         runtime={runtime}
-      />
-      <Select options={[]} />
-      <Select
-      onSelect={()=>{}}
-        options={[
-          { key: "1", text: "First" },
-          { key: "2", text: "Second" },
-          { key: "3", text: "Third" },
-        ]}
-        title="Hello World"
       />
     </div>
   );
