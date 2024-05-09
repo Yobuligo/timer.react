@@ -11,6 +11,7 @@ import { Sound } from "./types/Sound";
 
 export const App: React.FC = () => {
   const [runtime, setRuntime] = useState(0);
+  const [pause, setPause] = useState(false);
   const [runTimerId, setRunTimerId] = useState<string>(InitialRunTimerId);
   const [userConfig, setUserConfig] = useLocalStorage<IUserConfig>(
     "userConfig",
