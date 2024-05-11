@@ -79,8 +79,6 @@ export const App: React.FC = () => {
     setRunTimerId(InitialRunTimerId);
   };
 
-  const onPause = (timerConfig: ITimerConfig) => {};
-
   return (
     <div className={styles.app}>
       <div className={styles.timerPanel}>
