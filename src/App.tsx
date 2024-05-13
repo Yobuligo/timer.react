@@ -79,6 +79,10 @@ export const App: React.FC = () => {
     setRunTimerId(InitialRunTimerId);
   };
 
+  const onPause = (timerConfig: ITimerConfig) => {
+    
+  };
+
   return (
     <div className={styles.app}>
       <div className={styles.timerPanel}>
@@ -94,6 +98,7 @@ export const App: React.FC = () => {
         onAdd={onAdd}
         onChange={onChange}
         onDelete={onDelete}
+        onPause={onPause}
         onPlay={onPlay}
         timerConfigs={timerConfigs}
         runningTimerConfig={runningTimerConfig}
