@@ -14,7 +14,7 @@ interface IState {
 export const TimerPanel: React.FC<ITimerPanelProps> = (props) => {
   const [playSingleGong] = useSound("/assets/single_gong.mp3");
   const [playDoubleGong] = useSound("/assets/double_gong.mp3");
-  const [playTripleGong] = useSound("/assets/triple_gong2.mp3");
+  const [playTripleGong] = useSound("/assets/triple_gong.mp3");
 
   const state: IState = useMemo(
     () => ({
