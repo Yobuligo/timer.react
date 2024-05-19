@@ -23,6 +23,12 @@ export const TimerPanel: React.FC<ITimerPanelProps> = (props) => {
     []
   );
 
+  useEffect(() => {
+    if (state.isRunning && props.pause) {
+      state.isRunning = false;
+    }
+  }, [props.pause, state]);
+
   const playSound = useCallback(
     (sound: Sound) => {
       switch (sound) {
