@@ -8,6 +8,7 @@ import { ITimerConfig } from "./model/ITimerConfig";
 import { IUserConfig } from "./model/IUserConfig";
 import { InitialRunTimerId } from "./types/InitialRunTimerId";
 import { Sound } from "./types/Sound";
+import { TimerItem } from "./features/newTimerItem/TimerItems";
 
 export const App: React.FC = () => {
   const [runtime, setRuntime] = useState(0);
@@ -102,6 +103,15 @@ export const App: React.FC = () => {
         timerConfigs={timerConfigs}
         runningTimerConfig={runningTimerConfig}
         runtime={runtime}
+      />
+      <TimerItem
+        timerConfig={{
+          duration: 5,
+          editMode: false,
+          id: "123123",
+          sound: Sound.SingleGong,
+          title: "Next try",
+        }}
       />
     </div>
   );
