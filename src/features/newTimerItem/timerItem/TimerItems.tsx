@@ -17,11 +17,20 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
     if (runtime >= props.timerConfig.duration) {
       return;
     }
+    onCycle(runtime);
+  };
+
+  const onCycle = (runtime: number) => {
+    if (runtime >= props.timerConfig.duration) {
+      props.onCompleted?.(props.timerConfig);
+      console.log("Completed");
+      return;
+    }
 
     const timerTimeout = setTimeout(() => {
       setRuntime((previous) => {
         previous++;
-        onStart(previous);
+        onCycle(previous);
         return previous;
       });
     }, 1000);
@@ -36,11 +45,11 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
   };
 
   return (
-    <>
+    <div>
       {`Current Runtime ${runtime}`}
       <button onClick={() => onStart(runtime)}>Start</button>
       <button onClick={onPause}>Pause</button>
       <button onClick={onReset}>Reset</button>
-    </>
+    </div>
   );
 };
