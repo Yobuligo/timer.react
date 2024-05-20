@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./App.module.scss";
-import { TimerItemList } from "./features/newTimerItem/timerItemList/TImerItemList";
 import { TimerList } from "./features/timerList/TimerList";
 import { TimerPanel } from "./features/timerPanel/TimerPanel";
 import { useLocalStorage } from "./hooks/useLocalStorage";
@@ -105,7 +104,7 @@ export const App: React.FC = () => {
         runtime={runtime}
       />
 
-      <TimerItemList timerConfigs={timerConfigs} />
+      {/* <TimerItemList timerConfigs={timerConfigs} /> */}
     </div>
   );
 };

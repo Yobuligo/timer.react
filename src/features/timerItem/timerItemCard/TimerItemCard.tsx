@@ -7,7 +7,7 @@ export const TimerItemCard: React.FC<ITimerItemCardProps> = (props) => {
   return (
     <Card
       className={styles.timerItemCard}
-      style={StyleFactory.createBySound(props.sound)}
+      style={StyleFactory.createByProps(props.sound, props.isRunning)}
     >
       {props.children}
     </Card>

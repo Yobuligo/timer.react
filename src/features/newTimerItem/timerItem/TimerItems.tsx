@@ -17,6 +17,7 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
     if (runtime >= props.timerConfig.duration) {
       return;
     }
+    props.onStart?.(props.timerConfig);
     onCycle(runtime);
   };
 

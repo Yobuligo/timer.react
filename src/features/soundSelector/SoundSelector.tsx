@@ -24,7 +24,7 @@ export const SoundSelector: React.FC<ISoundSelectorProps> = (props) => {
     <select
       className={styles.selectSound}
       onChange={onSelect}
-      style={StyleFactory.createBySound(sound)}
+      style={StyleFactory.createByProps(sound, props.isRunning)}
       value={Sound[sound]}
     >
       {items}

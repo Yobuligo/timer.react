@@ -3,7 +3,14 @@ import { NotSupportedError } from "../core/errors/NotSupportedError";
 import { Sound } from "../types/Sound";
 
 class StyleFactoryDefault {
-  createBySound(sound: Sound): CSSProperties {
+  createByProps(sound: Sound, isRunning: boolean): CSSProperties {
+    if (isRunning) {
+      return {
+        border: "#b16392",
+        backgroundColor: "#b16392",
+      };
+    }
+
     switch (sound) {
       case Sound.SingleGong: {
         return {

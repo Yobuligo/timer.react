@@ -40,12 +40,15 @@ export const TimerItemEdit: React.FC<ITimerItemEditProps> = (props) => {
     onChange();
   };
 
+  const getStyle = () =>
+    StyleFactory.createByProps(props.timerConfig.sound, props.isRunning);
+
   return (
-    <TimerItemCard sound={props.timerConfig.sound}>
+    <TimerItemCard isRunning={props.isRunning} sound={props.timerConfig.sound}>
       <input
         className={style(styles.input, styles.inputTitle)}
         onChange={onChangeTitle}
-        style={StyleFactory.createBySound(props.timerConfig.sound)}
+        style={getStyle()}
         type="text"
         value={props.timerConfig.title}
       />
@@ -54,12 +57,13 @@ export const TimerItemEdit: React.FC<ITimerItemEditProps> = (props) => {
           className={style(styles.input, styles.watch)}
           min={0}
           onChange={onChangeTime}
-          style={StyleFactory.createBySound(props.timerConfig.sound)}
+          style={getStyle()}
           type="time"
           value={TimerConverter.secToTime(props.timerConfig.duration)}
         />
         <SoundSelector
           initialSound={props.timerConfig.sound}
+          isRunning={props.isRunning}
           onSelect={onSelectSound}
         />
         <ButtonPanel>

@@ -13,7 +13,7 @@ export const TimerItemDisplay: React.FC<ITimerItemDisplayProps> = (props) => {
   const onPause = () => props.onPause?.(props.timerConfig);
 
   return (
-    <TimerItemCard sound={props.timerConfig.sound}>
+    <TimerItemCard isRunning={props.isRunning} sound={props.timerConfig.sound}>
       {props.timerConfig.title}
       <div className={styles.footer}>
         <TimerItemWatch seconds={props.timerConfig.duration} />

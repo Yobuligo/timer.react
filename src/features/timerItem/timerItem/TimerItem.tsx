@@ -14,6 +14,7 @@ export const TimerItem: React.FC<ITimerItemProps> = (props) => {
     <>
       {editMode ? (
         <TimerItemEdit
+          isRunning={props.isRunning}
           onChange={props.onChange}
           onConfirm={onConfirm}
           onDelete={props.onDelete}
