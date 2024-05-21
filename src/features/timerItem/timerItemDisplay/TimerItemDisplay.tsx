@@ -20,10 +20,12 @@ export const TimerItemDisplay: React.FC<ITimerItemDisplayProps> = (props) => {
         {props.isRunning && <TimerItemWatch seconds={props.runtime} />}
 
         {props.isRunning ? (
-          <ButtonPanel>
-            <PauseIcon onClick={onPause} />
-            <PlayIcon />
-          </ButtonPanel>
+          <div>
+            {/* <ButtonPanel>
+              <PauseIcon onClick={onPause} />
+              <PlayIcon />
+            </ButtonPanel> */}
+          </div>
         ) : (
           <ButtonPanel>
             <PlayIcon onClick={onPlay} />
